@@ -1,6 +1,8 @@
 import os
 from module.xmlReader import readXML
 from module.jpgisObjectCreator import createPointObject, createCurveObject, createSurfaceObject
+from module.jsimaObjectCreator import createKakuchiObject, createChibanObject
+from module.createShapefile import createShapefile
 
 def getAbsPath(argsPath):
   currentDir = os.getcwd()
@@ -19,4 +21,6 @@ def main(path):
   curveObject = createCurveObject(xmlObject, pointObject)
   surfaceObject = createSurfaceObject(xmlObject, curveObject)
 
+  kakuchiObject = createKakuchiObject(xmlObject, surfaceObject)
+  chibanObject = createChibanObject(xmlObject, kakuchiObject)
 
