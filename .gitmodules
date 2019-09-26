@@ -1,0 +1,3 @@
+[submodule "shapefile"]
+	path = shapefile
+	url = git@github.com:GeospatialPython/pyshp.git
