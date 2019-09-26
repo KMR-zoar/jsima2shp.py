@@ -1,5 +1,6 @@
 import os
 from module.xmlReader import readXML
+from module.jpgisObjectCreator import createPointObject, createCurveObject, createSurfaceObject
 
 def getAbsPath(argsPath):
   currentDir = os.getcwd()
@@ -13,5 +14,9 @@ def getAbsPath(argsPath):
 def main(path):
   absPath = getAbsPath(path)
   xmlObject = readXML(absPath)
+
+  pointObject = createPointObject(xmlObject)
+  curveObject = createCurveObject(xmlObject, pointObject)
+  surfaceObject = createSurfaceObject(xmlObject, curveObject)
 
 
