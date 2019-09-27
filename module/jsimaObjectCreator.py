@@ -39,3 +39,12 @@ def createChibanObject(xmlObject, kakuchiObject):
     chibanObject[chibanId].properties.chibanId = chibanId
 
   return chibanObject
+
+def extractCoordSys(xmlObject):
+  coordSystemEleStr = '{http://www.jsima.or.jp/JSIMASchema/201206}CoordinateSystem'
+
+  coordSysElement = xmlObject.find(coordSystemEleStr)
+
+  coordSys = coordSysElement.text
+
+  return coordSys
