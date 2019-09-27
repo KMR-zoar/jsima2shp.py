@@ -1,8 +1,9 @@
 import os
 from module.xmlReader import readXML
 from module.jpgisObjectCreator import createPointObject, createCurveObject, createSurfaceObject
-from module.jsimaObjectCreator import createKakuchiObject, createChibanObject
+from module.jsimaObjectCreator import createKakuchiObject, createChibanObject, extractCoordSys
 from module.createShapefile import createShapefile
+from module.proj import copyProjFile
 
 def getAbsPath(argsPath):
   currentDir = os.getcwd()
@@ -17,11 +18,13 @@ def main(path):
   absPath = getAbsPath(path)
   xmlObject = readXML(absPath)
 
-  pointObject = createPointObject(xmlObject)
-  curveObject = createCurveObject(xmlObject, pointObject)
-  surfaceObject = createSurfaceObject(xmlObject, curveObject)
+  pointObject = createPointObject(xmlObject[1])
+  curveObject = createCurveObject(xmlObject[1], pointObject)
+  surfaceObject = createSurfaceObject(xmlObject[1], curveObject)
 
-  kakuchiObject = createKakuchiObject(xmlObject, surfaceObject)
-  chibanObject = createChibanObject(xmlObject, kakuchiObject)
+  kakuchiObject = createKakuchiObject(xmlObject[1], surfaceObject)
+  chibanObject = createChibanObject(xmlObject[1], kakuchiObject)
 
+  coordSys = extractCoordSys(xmlObject[0])
+  copyProjFile(coordSys, absPath)
   createShapefile(chibanObject, absPath)

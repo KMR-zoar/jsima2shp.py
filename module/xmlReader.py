@@ -7,4 +7,4 @@ def readXML(path):
   xmlString = ''.join(xmlStream)
   xmlData = ET.fromstring(xmlString)
 
-  return xmlData[1][1]
+  return xmlData[1]
