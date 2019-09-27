@@ -10,7 +10,7 @@ def createShapefile(chibanObject, path):
   shpWriter.field('chiban', 'C', 250)
   shpWriter.field('OAza', 'C', 50)
   shpWriter.field('Aza', 'C', 50)
-  shpWriter.field('Area', 'F', 50)
+  shpWriter.field('Area', 'C', 50)
 
   for chibanId in  chibanObject.keys():
     shpWriter.poly(chibanObject[chibanId].geometry)
