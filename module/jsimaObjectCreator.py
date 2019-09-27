@@ -25,11 +25,17 @@ def createChibanObject(xmlObject, kakuchiObject):
 
   for chibanElement in xmlObject.findall(chibanEleStr):
     chibanId = chibanElement.attrib['id']
-    kakuchiRefId = chibanElement.find(chibanEleStr).attrib['idref']
+    kakuchiRefId = chibanElement.find(kakuchiRefStr).attrib['idref']
     chibanObject[chibanId] = kakuchiObject[kakuchiRefId]
-    chibanObject[chibanId]['properties']['OAza'] = chibanElement.find(oazaEleStr).text
-    chibanObject[chibanId]['properties']['Aza'] = chibanElement.find(azaEleStr).text
-    chibanObject[chibanId]['properties']['Area'] = chibanElement.find(areaEleStr).text
+
+    oazaElement = chibanElement.find(oazaEleStr)
+    chibanObject[chibanId]['properties']['OAza'] = oazaElement.text if oazaElement != None else None
+
+    azaElement = chibanElement.find(azaEleStr)
+    chibanObject[chibanId]['properties']['Aza'] = azaElement.text if azaElement != None else None
+
+    areaElement = chibanElement.find(areaEleStr)
+    chibanObject[chibanId]['properties']['Area'] = areaElement.text if areaElement != None else None
     chibanObject[chibanId]['properties']['chibanId'] = chibanId
 
   return chibanObject
