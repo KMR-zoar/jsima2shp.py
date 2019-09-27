@@ -24,3 +24,4 @@ def main(path):
   kakuchiObject = createKakuchiObject(xmlObject, surfaceObject)
   chibanObject = createChibanObject(xmlObject, kakuchiObject)
 
+  createShapefile(chibanObject, absPath)
