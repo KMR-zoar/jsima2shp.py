@@ -13,17 +13,17 @@ def createShapefile(chibanObject, path):
   shpWriter.field('Area', 'F', 50)
 
   for chibanId in  chibanObject.keys():
-    shpWriter.poly(chibanObject[chibanId]['geometry'])
+    shpWriter.poly(chibanObject[chibanId].geometry)
 
-    properties = chibanObject[chibanId]['properties']
+    properties = chibanObject[chibanId].properties
     shpWriter.record(
-      properties['surfaceId'],
-      properties['kakuchiId'],
-      properties['chibanId'],
-      properties['chiban'],
-      properties['OAza'],
-      properties['Aza'],
-      properties['Area']
+      properties.surfaceId,
+      properties.kakuchiId,
+      properties.chibanId,
+      properties.chiban,
+      properties.OAza,
+      properties.Aza,
+      properties.Area
     )
 
   shpWriter.close()

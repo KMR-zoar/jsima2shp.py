@@ -1,3 +1,5 @@
+from module.classes.feature import Properties, Feature
+
 def createPointObject(xmlObject):
   gmPointEleStr = '{http://www.gsi.go.jp/GIS/jpgis/standardSchemas2.1_2009-05}GM_Point'
 
@@ -48,11 +50,8 @@ def createSurfaceObject(xmlObject, curveObject):
     geometry.append(geometry[0])
 
     surfaceId = surfaceElement.attrib['id']
-    surfaceObject[surfaceId] = {
-      "properties" : {
-        "surfaceId": surfaceId
-      },
-      "geometry": [geometry]
-    }
+    surfaceProp = Properties(surfaceId, None, None, None, None, None, None)
+    feature = Feature(surfaceProp, [geometry])
+    surfaceObject[surfaceId] = feature
 
   return surfaceObject

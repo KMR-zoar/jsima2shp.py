@@ -9,8 +9,8 @@ def createKakuchiObject(xmlObject, surfaceObject):
     kakuchiId = kakuchiElement.attrib['id']
     surfaceRefId = kakuchiElement.find(surfaceRefStr).attrib['idref']
     kakuchiObject[kakuchiId] = surfaceObject[surfaceRefId]
-    kakuchiObject[kakuchiId]['properties']['kakuchiId'] = kakuchiId
-    kakuchiObject[kakuchiId]['properties']['chiban'] = kakuchiElement.find(chibanEleStr).text
+    kakuchiObject[kakuchiId].properties.kakuchiId = kakuchiId
+    kakuchiObject[kakuchiId].properties.chiban = kakuchiElement.find(chibanEleStr).text
 
   return kakuchiObject
 
@@ -29,13 +29,13 @@ def createChibanObject(xmlObject, kakuchiObject):
     chibanObject[chibanId] = kakuchiObject[kakuchiRefId]
 
     oazaElement = chibanElement.find(oazaEleStr)
-    chibanObject[chibanId]['properties']['OAza'] = oazaElement.text if oazaElement != None else None
+    chibanObject[chibanId].properties.OAza = oazaElement.text if oazaElement != None else None
 
     azaElement = chibanElement.find(azaEleStr)
-    chibanObject[chibanId]['properties']['Aza'] = azaElement.text if azaElement != None else None
+    chibanObject[chibanId].properties.Aza = azaElement.text if azaElement != None else None
 
     areaElement = chibanElement.find(areaEleStr)
-    chibanObject[chibanId]['properties']['Area'] = areaElement.text if areaElement != None else None
-    chibanObject[chibanId]['properties']['chibanId'] = chibanId
+    chibanObject[chibanId].properties.Area = areaElement.text if areaElement != None else None
+    chibanObject[chibanId].properties.chibanId = chibanId
 
   return chibanObject
