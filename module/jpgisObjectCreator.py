@@ -15,16 +15,19 @@ def createPointObject(xmlObject):
 
 def createCurveObject(xmlObject, pointObject):
   gmCurveEleStr = '{http://www.gsi.go.jp/GIS/jpgis/standardSchemas2.1_2009-05}GM_Curve'
+  segmentEleStr = '{http://www.gsi.go.jp/GIS/jpgis/standardSchemas2.1_2009-05}segment'
 
   curveObject = {}
 
   for curveElement in xmlObject.findall(gmCurveEleStr):
     curveId = curveElement.attrib['id']
+    segmentElement = curveElement.find(segmentEleStr)
     curveObject[curveId] = [
-      pointObject[curveElement[4][0][1][0][0][0].attrib['idref']],
-      pointObject[curveElement[4][0][1][1][0][0].attrib['idref']]
+      pointObject[segmentElement[0][1][0][0][0].attrib['idref']],
+      pointObject[segmentElement[0][1][1][0][0].attrib['idref']]
     ]
-    curveObject['_' + curveId] = curveObject[curveId].reverse()
+
+    curveObject['_' + curveId] = list(reversed(curveObject[curveId]))
 
   return  curveObject
 
